@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "683763889132",
+    "firebase_url": "https://aplicacionsonidospeliculas.firebaseio.com",
+    "project_id": "aplicacionsonidospeliculas",
+    "storage_bucket": "aplicacionsonidospeliculas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683763889132:android:af34e0b24be74890",
+        "android_client_info": {
+          "package_name": "com.example.sonidosdepeliculas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683763889132-52ifin0r41e4lp3s0tj629rvjqo20imr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sonidosdepeliculas",
+            "certificate_hash": "5bab5e8de83e28b156e3a2cd26a82215e9b38f94"
+          }
+        },
+        {
+          "client_id": "683763889132-ghietb532n0bh9l8npjsa14elibp7r36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoRzwh4qbaVKYp6mVUcfVRp390-MtUmGg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683763889132-ghietb532n0bh9l8npjsa14elibp7r36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
