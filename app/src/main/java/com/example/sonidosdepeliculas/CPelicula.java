@@ -15,6 +15,7 @@ public class CPelicula implements Parcelable {
     String premios;
     String categoria;
     String imagen;
+    String reparto;
 
 
 
@@ -28,13 +29,14 @@ public class CPelicula implements Parcelable {
         }
     };
 
-    public CPelicula(String nombre, String duracion, String ano, String premios, String categoria, String imagen) {
+    public CPelicula(String nombre, String duracion, String ano, String premios, String categoria, String imagen, String reparto) {
         this.titulo = nombre;
         this.duracion = duracion;
         this.ano = ano;
         this.premios = premios;
         this.categoria = categoria;
         this.imagen = imagen;
+        this.reparto= reparto;
     }
 
     public CPelicula(Parcel p) {
@@ -72,8 +74,8 @@ public class CPelicula implements Parcelable {
         return premios;
     }
 
-    public void setPremios(String premio) {
-        this.premios = premio;
+    public void setPremios(String premios) {
+        this.premios = premios;
     }
 
     public String getCategoria() {
@@ -92,6 +94,14 @@ public class CPelicula implements Parcelable {
         this.imagen = imagen;
     }
 
+    public String getReparto() {
+        return reparto;
+    }
+
+    public void setReparto(String reparto) {
+        this.reparto = reparto;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -105,6 +115,8 @@ public class CPelicula implements Parcelable {
             dest.writeString(this.imagen);
             dest.writeString(this.premios);
             dest.writeString(this.categoria);
+            dest.writeString(this.reparto);
+
 
         }
 
@@ -116,6 +128,7 @@ public class CPelicula implements Parcelable {
             this.imagen= p.readString();
             this.premios= p.readString();
             this.categoria= p.readString();
+            this.reparto= p.readString();
 
 
         }

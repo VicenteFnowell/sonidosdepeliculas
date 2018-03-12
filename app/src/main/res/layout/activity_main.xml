@@ -10,34 +10,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/cine"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cinefondo"
         android:orientation="horizontal">
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Películas"
-            android:layout_margin="15dp"
-            android:onClick="clickbtnpeliculas"
-            />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Actores/Actrices"
-            android:layout_margin="15dp"/>
-    </LinearLayout>
 </LinearLayout>
