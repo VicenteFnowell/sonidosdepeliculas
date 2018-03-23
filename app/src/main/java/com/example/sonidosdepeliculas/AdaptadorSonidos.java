@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -72,25 +74,26 @@ public class AdaptadorSonidos extends ArrayAdapter<CSonidos> {
 
                 String sonido = sonidos.get(position).getNombre();
                 String pelicula = sonidos.get(position).getPelicula();
-                try {
-                    compartirAudio(sonido,pelicula);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                   // compartirAudio(sonido,pelicula);
+                    descargarArchivoLocalFirebase();
+
 
 
             }
         });
 
         //BTN PLAY
-        Button bt_play = (Button)item.findViewById(R.id.btitmplay);
-
-        bt_play.setOnClickListener(new View.OnClickListener() {
+        final Button bt_playpause = (Button)item.findViewById(R.id.btitmplay);
+        bt_playpause.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
                 String sonido = sonidos.get(position).getNombre();
                 String pelicula = sonidos.get(position).getPelicula();
                 cargarAudio(sonido,pelicula);
+                bt_playpause.setBackgroundResource(R.drawable.pauseselector);
+
 
             }
         });
@@ -101,6 +104,9 @@ public class AdaptadorSonidos extends ArrayAdapter<CSonidos> {
 
     }
 
+
+
+
     private void cargarAudio(String audio, String pelicula){
 
 
@@ -110,11 +116,11 @@ public class AdaptadorSonidos extends ArrayAdapter<CSonidos> {
                 MediaPlayer mp = new MediaPlayer();
                 try {
 
-
                     mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mp.setDataSource(uri.toString());
                     mp.prepare();
                     mp.start();
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -128,6 +134,7 @@ public class AdaptadorSonidos extends ArrayAdapter<CSonidos> {
             }
         });
     }
+
 
 
 private void compartirAudio (String audio, String pelicula) throws IOException {
@@ -153,6 +160,38 @@ private void compartirAudio (String audio, String pelicula) throws IOException {
     });
 
 
+}
+
+private void descargarArchivoLocalFirebase(){
+    this.stRef  = FirebaseStorage.getInstance().getReference().child("audios/Matrix/elegido.mp3");
+
+    File localFile = null;
+   String audiotempdescargado="";
+    try {
+            localFile = File.createTempFile("elegido", ".mp3");
+            audiotempdescargado = localFile.getPath();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    stRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+        @Override
+        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+            Toast.makeText(getContext(),"creado",Toast.LENGTH_LONG).show();
+
+
+        }
+    }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception exception) {
+            Toast.makeText(getContext(),"aaa "+exception,Toast.LENGTH_LONG).show();
+        }
+    });
+
+     Uri uri = Uri.parse(audiotempdescargado);
+    Intent share =  new Intent(Intent.ACTION_SEND,uri);
+    share.setType("audio/*");
+    c.startActivity(Intent.createChooser(share,"Compartir sonido en: "));
 }
 
 /*
